@@ -1,8 +1,13 @@
 import React from 'react'
 import { Layout } from 'antd'
-import EmployeeList from './EmployeeList'
+import EmployeeList from '../Components/EmployeeList'
 const { Header } = Layout
-const Home = () => {
+
+type HomeProps = {
+  children?: React.ReactNode
+}
+
+const Home = (props: HomeProps) => {
   return (
     <Layout>
       <Header
@@ -12,11 +17,10 @@ const Home = () => {
           textAlign: 'center',
           fontWeight: 'bold',
         }}
-        className=""
       >
         Employee CRUD Application
       </Header>
-      <EmployeeList />
+      {props.children}
     </Layout>
   )
 }
