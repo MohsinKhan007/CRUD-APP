@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd'
-import EmployeeList from '../Components/EmployeeList'
+
 const { Header } = Layout
 
 type HomeProps = {

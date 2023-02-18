@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Button, List } from 'antd'
+import { useEffect, useState } from 'react'
+import { Button } from 'antd'
+import MyList from '../Components/List'
 import EmployeeService from '../utils/EnployeeService'
 import IEmployee from '../Interfaces/Employee'
 import EmployeeItem from './EmployeeItem'
@@ -18,9 +19,14 @@ const EmployeeList = () => {
       })
   }, [])
 
-  const deleteEmployee = (id: Number) => {
+  const deleteEmployee = (id: string) => {
     // we will filter and call the api to delete on both sides
     console.log('Delete Employee Main ', id)
+    // Add the API call and add the toast or message that employee is deleted
+    let filtered = employee.filter((emp) => emp.id !== id)
+    console.log(filtered, ' filtered')
+
+    setEmployee(filtered)
   }
 
   return (
@@ -36,13 +42,14 @@ const EmployeeList = () => {
           <Button>Create New</Button>
         </Link>
       </div>
-      <List locale={{ emptyText: 'there is nothing to do' }}>
-        {employee.map((emp: IEmployee) => {
-          return (
-            <EmployeeItem employee={emp} deleteEmployee={deleteEmployee} />
-          )
-        })}
-      </List>
+
+      <MyList
+        items={employee}
+        keyExtractor={(item) => item.id}
+        render={(item) => (
+          <EmployeeItem employee={item} deleteEmployee={deleteEmployee} />
+        )}
+      />
     </Home>
   )
 }

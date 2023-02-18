@@ -1,22 +1,46 @@
 export default interface IEmployee {
-  id: Number | null
-  name: String
-  username: String
+  id: string
+  name: string
+  username: string
+  email: string
   address: {
-    street?: String
-    suite?: String
-    city: String
-    zipcode?: String
+    street?: string
+    suite?: string
+    city: string
+    zipcode?: string
     geo?: {
-      lat: GLfloat
-      lng: GLfloat
+      lat: string
+      lng: string
     }
   }
-  phone: String
-  website: String
+  phone: string
+  website: string
   company?: {
-    name: String
-    catchphrase: String
-    bs: String
+    name: string
+    catchphrase: string
+    bs: string
   }
+}
+export const initialValue: IEmployee = {
+  id: '',
+  name: '',
+  username: '',
+  email: '',
+  address: {
+    street: '',
+    suite: '',
+    city: '',
+    zipcode: '',
+    geo: {
+      lat: '',
+      lng: '',
+    },
+  },
+  phone: '',
+  website: '',
+  company: {
+    name: '',
+    catchphrase: '',
+    bs: '',
+  },
 }

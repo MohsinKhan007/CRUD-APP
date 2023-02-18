@@ -6,13 +6,13 @@ import IEmployee from '../Interfaces/Employee'
 
 interface EmployeeItemProps {
   employee: IEmployee
-  deleteEmployee: (id: Number) => void
+  deleteEmployee: (id: string) => void
 }
 
 const EmployeeItem = ({ employee, deleteEmployee }: EmployeeItemProps) => {
   const { id, name } = employee
   const handleDelete = () => {
-    deleteEmployee(id!)
+    deleteEmployee(id)
     console.log('Delete employeeItem ')
   }
 
