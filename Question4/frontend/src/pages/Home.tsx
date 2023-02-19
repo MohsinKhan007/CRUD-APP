@@ -9,7 +9,15 @@ type HomeProps = {
 
 const Home = (props: HomeProps) => {
   return (
-    <Layout>
+    <Layout
+      style={{
+        backgroundColor: '#F5F5F5',
+        height: '100vh',
+        width: '100vw',
+        overflow: 'scroll',
+        boxSizing: 'border-box',
+      }}
+    >
       <Header
         style={{
           backgroundColor: 'teal',

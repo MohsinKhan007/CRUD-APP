@@ -1,26 +1,24 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import EmployeeForm from '../pages/EmployeeForm'
-import EmployeeDetail from '../pages/EmployeeDetail'
+import Spinner from '../utils/Spinner'
 
-// import Home from '../pages/Home'
-import PageNotFound from '../pages/PageNotFound'
-import EmployeeList from '../Components/EmployeeList'
+const EmployeeForm = lazy(() => import('../pages/EmployeeForm'))
+const EmployeeList = lazy(() => import('../Components/EmployeeList'))
 
-// const Home= lazy(()=>import('../pages/Home'));
-// const PageNotFound=lazy(()=>import('../pages/PageNotFound'));
-
-// Add a Loader using the code splitting
+const EmployeeDetail = lazy(() => import('../pages/EmployeeDetail'))
+const PageNotFound = lazy(() => import('../pages/PageNotFound'))
 
 const Main: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<EmployeeList />} />
-      <Route path="/create" element={<EmployeeForm />} />
-      <Route path="/edit/:id" element={<EmployeeForm />} />
-      <Route path="/employee/:id" element={<EmployeeDetail />} />
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path="/" element={<EmployeeList />} />
+        <Route path="/create" element={<EmployeeForm />} />
+        <Route path="/edit/:id" element={<EmployeeForm />} />
+        <Route path="/employee/:id" element={<EmployeeDetail />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Suspense>
   )
 }
 
