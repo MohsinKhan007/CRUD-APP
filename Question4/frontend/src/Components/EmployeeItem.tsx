@@ -7,7 +7,7 @@ import IEmployee from '../Interfaces/Employee'
 
 interface EmployeeItemProps {
   employee: IEmployee
-  deleteEmployee: (id: string) => void
+  deleteEmployee: (id: number) => void
 }
 
 const EmployeeItem = ({ employee, deleteEmployee }: EmployeeItemProps) => {

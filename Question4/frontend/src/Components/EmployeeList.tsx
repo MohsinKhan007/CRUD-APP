@@ -22,7 +22,7 @@ const EmployeeList = () => {
       })
   }, [])
 
-  const deleteEmployee = (id: string) => {
+  const deleteEmployee = (id: number) => {
     try {
       let filtered = employee.filter((emp) => emp.id !== id)
       console.log(filtered, ' filtered')

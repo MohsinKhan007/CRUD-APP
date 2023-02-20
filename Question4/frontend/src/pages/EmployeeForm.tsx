@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import EmployeeService from '../utils/EnployeeService'
 import Home from './Home'
 import IEmployee, { initialValue } from '../Interfaces/Employee'
@@ -7,7 +7,6 @@ import { Button, Form, Input, message } from 'antd'
 import useLoaderHook from '../utils/UseLoaderHook'
 import BackButton from '../Components/BackNavigation'
 import Alert from '../utils/Alert'
-import { NoticeType } from 'antd/es/message/interface'
 
 const EmployeeForm = () => {
   const paramId = +useParams().id!

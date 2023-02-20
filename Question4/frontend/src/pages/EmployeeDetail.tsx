@@ -60,8 +60,8 @@ function EmployeeDetail() {
           <Descriptions.Item label="phone">
             {employee.phone}
           </Descriptions.Item>
-          <Descriptions.Item label="username">
-            {employee.username}
+          <Descriptions.Item label="department">
+            {employee.dept}
           </Descriptions.Item>
         </Descriptions>
       </div>
