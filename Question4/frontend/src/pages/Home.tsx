@@ -1,10 +1,23 @@
 import React from 'react'
 import { Layout } from 'antd'
-import EmployeeList from './EmployeeList'
+
 const { Header } = Layout
-const Home = () => {
+
+type HomeProps = {
+  children?: React.ReactNode
+}
+
+const Home = (props: HomeProps) => {
   return (
-    <Layout>
+    <Layout
+      style={{
+        backgroundColor: '#F5F5F5',
+        height: '100vh',
+        width: '100vw',
+        overflow: 'scroll',
+        boxSizing: 'border-box',
+      }}
+    >
       <Header
         style={{
           backgroundColor: 'teal',
@@ -12,11 +25,10 @@ const Home = () => {
           textAlign: 'center',
           fontWeight: 'bold',
         }}
-        className=""
       >
         Employee CRUD Application
       </Header>
-      <EmployeeList />
+      {props.children}
     </Layout>
   )
 }

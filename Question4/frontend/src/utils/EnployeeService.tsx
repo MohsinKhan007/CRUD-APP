@@ -6,7 +6,7 @@ const getAll = () => {
 }
 
 const getEmployeeById = (id: Number) => {
-  return API.get<Array<IEmployee>>(`/users/${id}`)
+  return API.get<IEmployee>(`/users/${id}`)
 }
 
 const updateEmployee = (id: Number, data: IEmployee) => {
