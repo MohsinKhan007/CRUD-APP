@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import EmployeeService from '../utils/EnployeeService'
 import Home from './Home'
 import IEmployee, { initialValue } from '../Interfaces/Employee'
 import { Button, Form, Input, message } from 'antd'
 import useLoaderHook from '../utils/UseLoaderHook'
-import BackButton from '../Components/BackNavigation'
+import BackButton from '../Components/BackButton'
 import Alert from '../utils/Alert'
 
 const EmployeeForm = () => {
@@ -13,23 +13,29 @@ const EmployeeForm = () => {
   const isAdd = !paramId
   const [employee, setEmployee] = useState<IEmployee>(initialValue)
   const { loading, setLoading } = useLoaderHook(true)
+  const [formDisbale, setFormDisable] = useState(false)
   const [messageApi, contextHolder] = message.useMessage()
-
+  let navigate = useNavigate()
   const [form] = Form.useForm()
 
+  // getTitle getting the title of the form Create or Update by checking the IsAdd variable
   const getTitle = () => {
     const title = isAdd ? 'Create Employee' : 'Update Employee'
-    return <h1 style={{ fontSize: '2rem' }}>{title}</h1>
+    return <h1 className="text-l text-c">{title}</h1>
   }
+
+  // getButtonText getting the button text of submit button Create or Update by checking the IsAdd variable
   const getButtonText = () => {
     const buttonText = isAdd ? 'Create' : 'Update'
     return buttonText
   }
 
+  // useEffect to Call the Api when Component is created
   useEffect(() => {
     !isAdd && getEmployeeData(paramId)
   }, [isAdd, paramId])
 
+  // Call the api and getting the Employee Data if it is an Edit Form
   const getEmployeeData = async (paramId: number) => {
     await EmployeeService.getEmployeeById(paramId)
       .then((res) => {
@@ -40,21 +46,22 @@ const EmployeeForm = () => {
       })
       .finally(() => setLoading(false))
   }
-
+  // Calling when submitting the form
   const handleSubmit = () => {
     try {
       form
         .validateFields()
-        .then((value) => {
+        .then(async (_) => {
           if (isAdd) {
-            //Add will get the value of the form in the antd
+            console.log('Create Employee')
+            await EmployeeService.createEmployee(employee)
             Alert({
               type: 'success',
               content: 'Employee is Created sucessfully',
               messageApi: messageApi,
             })
           } else {
-            // Update will get the full employee
+            await EmployeeService.updateEmployee(employee)
 
             Alert({
               type: 'success',
@@ -62,8 +69,13 @@ const EmployeeForm = () => {
               messageApi: messageApi,
             })
           }
+          setFormDisable(true)
+          setTimeout(() => {
+            return navigate('/')
+          }, 2000)
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e)
           Alert({
             type: 'error',
             content: 'Resolve the input fields and try again',
@@ -71,10 +83,11 @@ const EmployeeForm = () => {
           })
         })
     } catch (e: any) {
+      console.log(e)
       Alert({ type: 'error', content: e, messageApi: messageApi })
     }
   }
-
+  // Handles the changed value of the selected input field in the State Hook
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name
     const value = e.target.value
@@ -86,12 +99,20 @@ const EmployeeForm = () => {
     })
   }
 
+  // JSX of Form to display in the Element
   const Data = (
     <>
       {contextHolder}
-      <Form style={{ width: '50%' }} initialValues={employee} form={form}>
+      <Form
+        className="w-50 "
+        initialValues={employee}
+        form={form}
+        disabled={formDisbale}
+      >
         <Form.Item
-          label="email"
+          labelAlign="left"
+          labelCol={{ span: 4 }}
+          label="Email"
           name="email"
           rules={[
             {
@@ -122,7 +143,9 @@ const EmployeeForm = () => {
           />
         </Form.Item>
         <Form.Item
-          label="name"
+          labelAlign="left"
+          labelCol={{ span: 4 }}
+          label="Name"
           name="name"
           rules={[{ required: true, message: 'Please input your name!' }]}
         >
@@ -134,7 +157,9 @@ const EmployeeForm = () => {
           />
         </Form.Item>
         <Form.Item
-          label="department"
+          labelAlign="left"
+          labelCol={{ span: 4 }}
+          label="Department"
           name="dept"
           rules={[
             { required: true, message: 'Please input your department!' },
@@ -148,7 +173,9 @@ const EmployeeForm = () => {
           />
         </Form.Item>
         <Form.Item
-          label="phone"
+          labelAlign="left"
+          labelCol={{ span: 4 }}
+          label="Phone"
           name="phone"
           rules={[
             { required: true, message: 'Please input your phone!' },
@@ -161,7 +188,7 @@ const EmployeeForm = () => {
                   return Promise.resolve()
                 } else {
                   return Promise.reject(
-                    new Error('Email Address is not valid')
+                    new Error('Phone number is not valid')
                   )
                 }
               },
@@ -174,29 +201,30 @@ const EmployeeForm = () => {
             onChange={handleChange}
           />
         </Form.Item>
+        <div className="text-c">
+          <Button
+            disabled={formDisbale}
+            htmlType="submit"
+            onClick={handleSubmit}
+            type="primary"
+            className="w-20 fontWeight"
+          >
+            {getButtonText()}
+          </Button>
+        </div>
       </Form>
-      <Button htmlType="submit" onClick={handleSubmit} type="primary">
-        {getButtonText()}
-      </Button>
     </>
   )
+  // check if the Api is fecthing Data of not and display the Data if api fecthing is completed
   let displayData = isAdd ? Data : !loading && Data
 
   return (
     <Home>
       <div>
         <BackButton />
-        <div style={{ padding: '0px 80px ' }}>
-          <div style={{ textAlign: 'center' }}>{getTitle()}</div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            {displayData}
-          </div>
+        <div className="p-0-80">
+          <div className="text-c">{getTitle()}</div>
+          <div className="flex flex-d-col align-c ">{displayData}</div>
         </div>
       </div>
     </Home>

@@ -1,5 +1,5 @@
 import { MessageInstance, NoticeType } from 'antd/es/message/interface'
-
+// notificaton alert Class
 type MessageProps = {
   type: NoticeType
   content: string

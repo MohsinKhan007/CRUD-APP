@@ -42,11 +42,17 @@ public class MainClass {
 	    
 	}
 	public static void main(String[] args) {
+		// Delaring the String array for testing the function
 		String[] str1=new String[]{"aaaasda", "a", "aab", "aaabcd", "ef", "cssssassd", "fdz", "kf", "zc","lklklklklklklklkl", "l"};
+		String[] str2=new String[]{"aaaa","jnjn","yygyg","okok","pasccrc","jhbg","a","unubv","jjnajja"};
+		// macthed Char to count in a String value
 		char machtedString='a';
-		String[] sortedString=new String[str1.length];
-		sortedString=SortArrayByElement(str1,machtedString);
+		// Declearing the Array by previous Array Length
+		String[] sortedString=new String[str2.length];
+		// Calling the Function
+		sortedString=SortArrayByElement(str2,machtedString);
 		
+		// iterate over the array after the sorting
 		for(String sortedStr:sortedString) {
 			System.out.println(sortedStr);
 		}

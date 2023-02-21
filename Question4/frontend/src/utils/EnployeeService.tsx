@@ -1,20 +1,25 @@
 import API from './API'
 import IEmployee from '../Interfaces/Employee'
 
+// Services created to perform functions from backend End Points using the API Class
 const getAll = () => {
-  return API.get<Array<IEmployee>>('/users')
+  return API.get<Array<IEmployee>>('/getAll')
+}
+
+const createEmployee = (data: IEmployee) => {
+  return API.post<IEmployee>(`/create`, data)
 }
 
 const getEmployeeById = (id: Number) => {
-  return API.get<IEmployee>(`/users/${id}`)
+  return API.get<IEmployee>(`/getById/${id}`)
 }
 
-const updateEmployee = (id: Number, data: IEmployee) => {
-  return API.put<any>(`/usersUpdate/${id}`, data)
+const updateEmployee = (data: IEmployee) => {
+  return API.put<IEmployee>(`/update`, data)
 }
 
 const deleteEmployee = (id: Number) => {
-  return API.delete<any>(`/users/${id}`)
+  return API.delete<any>(`/delete/${id}`)
 }
 
 const EmployeeService = {
@@ -22,5 +27,6 @@ const EmployeeService = {
   getEmployeeById,
   updateEmployee,
   deleteEmployee,
+  createEmployee,
 }
 export default EmployeeService

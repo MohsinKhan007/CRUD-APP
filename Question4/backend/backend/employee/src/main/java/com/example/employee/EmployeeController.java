@@ -1,10 +1,11 @@
 package com.example.employee;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+// Employee Object Controller to connect with frontend
+// Contains 5 Enpoints getAllemployees, getEmployeeById, CreateEmployee, UpdateEmployee, DeleteEmployee  
+// Adding the frontend CORS origin point so that the frontend could access the controller
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value="api/Employees",method= {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST})

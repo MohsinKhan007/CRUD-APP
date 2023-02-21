@@ -8,14 +8,18 @@ import useLoaderHook from '../utils/UseLoaderHook'
 import { initialValue } from '../Interfaces/Employee'
 import Spinner from '../utils/Spinner'
 import { ArrowLeftOutlined } from '@ant-design/icons/lib/icons'
-import BackNavigation from '../Components/BackNavigation'
+import BackNavigation from '../Components/BackButton'
 function EmployeeDetail() {
   const [employee, setEmployee] = useState<IEmployee>(initialValue)
 
   const { loading, setLoading } = useLoaderHook(true)
 
+  const lableStyling = {
+    fontWeight: 'bold',
+    fontSize: '1.2rem',
+    color: '#008080',
+  }
   const id = useParams().id!
-  const navigate = useNavigate()
 
   useEffect(() => {
     EmployeeService.getEmployeeById(parseInt(id))
@@ -35,42 +39,32 @@ function EmployeeDetail() {
       <div>
         <BackNavigation />
       </div>
-      <div style={{ padding: '20px' }}>
-        <h1 style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+      <div className="p-20">
+        <h1 style={lableStyling} className="text-c text-h1">
           {employee.name}
         </h1>
         <Descriptions
-          style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '20px',
-          }}
+          className="bg-white p-20 bd-20"
           layout="vertical"
           size="default"
         >
           <Descriptions.Item
-            labelStyle={{ fontWeight: 'bold', fontSize: '1.2rem' }}
+            labelStyle={lableStyling}
             label="Employee Name"
           >
             {employee.name}
           </Descriptions.Item>
           <Descriptions.Item
-            labelStyle={{ fontWeight: 'bold', fontSize: '1.2rem' }}
+            labelStyle={lableStyling}
             label="Phone"
-            style={{ fontSize: '1.5rem' }}
+            className="text-title"
           >
             {employee.phone}
           </Descriptions.Item>
-          <Descriptions.Item
-            labelStyle={{ fontWeight: 'bold', fontSize: '1.2rem' }}
-            label="Email"
-          >
+          <Descriptions.Item labelStyle={lableStyling} label="Email">
             {employee.email}
           </Descriptions.Item>
-          <Descriptions.Item
-            labelStyle={{ fontWeight: 'bold', fontSize: '1.2rem' }}
-            label="Department"
-          >
+          <Descriptions.Item labelStyle={lableStyling} label="Department">
             {employee.dept}
           </Descriptions.Item>
         </Descriptions>

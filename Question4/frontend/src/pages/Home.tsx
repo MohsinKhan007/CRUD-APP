@@ -9,23 +9,8 @@ type HomeProps = {
 
 const Home = (props: HomeProps) => {
   return (
-    <Layout
-      style={{
-        backgroundColor: '#F5F5F5',
-        height: '100vh',
-        width: '100vw',
-        overflow: 'scroll',
-        boxSizing: 'border-box',
-      }}
-    >
-      <Header
-        style={{
-          backgroundColor: 'teal',
-          fontSize: '2.0rem',
-          textAlign: 'center',
-          fontWeight: 'bold',
-        }}
-      >
+    <Layout className="bg-grey bd-box scroll view-w-100 view-h-100">
+      <Header className="fontWeight bg-teal text-c text-l">
         Employee CRUD Application
       </Header>
       {props.children}

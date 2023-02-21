@@ -2,6 +2,7 @@ import { Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import Home from '../pages/Home'
 
+// Spinner Components used when page loading and data loading is called
 const antIcon = (
   <LoadingOutlined
     cols={8}
@@ -17,7 +18,7 @@ const antIcon = (
 const CustomSpinner = () => (
   <Home>
     {' '}
-    <Spin style={{ textAlign: 'center' }} indicator={antIcon} />
+    <Spin className="text-c" indicator={antIcon} />
   </Home>
 )
 

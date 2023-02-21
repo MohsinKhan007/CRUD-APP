@@ -1,25 +1,12 @@
-import React from 'react'
-import BackButton from '../Components/BackNavigation'
+import BackButton from '../Components/BackButton'
 import Home from './Home'
-
+// 404 page in case if user enters the wrong route
 function PageNotFound() {
   return (
     <Home>
       <BackButton />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          justifyItems: 'center',
-        }}
-      >
-        {' '}
-        <h1 style={{ fontSize: '4.0rem', color: 'teal' }}>404</h1>
-        <h2 style={{ fontSize: '2.0rem', color: 'teal' }}>
-          Page Not Found
-        </h2>
+      <div className="flex just-center ">
+        <h1 className="text-teal text-xl ">404 Page Not Found</h1>
       </div>
     </Home>
   )

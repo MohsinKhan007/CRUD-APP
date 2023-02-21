@@ -1,4 +1,6 @@
 import React, { ReactNode } from 'react'
+// Custom List Iterator created for iteration of the Employees List
+// Through its propertiese we can add Div Styled Elements,render Element and Key of list and Child Props
 type DivType = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement

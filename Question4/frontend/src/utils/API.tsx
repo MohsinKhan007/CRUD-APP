@@ -1,9 +1,10 @@
 import axios from 'axios'
-
+// Create a Axios instance and providing a base URL for the CRUD methods
 const API = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/',
+  baseURL: 'http://localhost:8082/api/Employees',
   headers: {
-    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
   },
 })
 
