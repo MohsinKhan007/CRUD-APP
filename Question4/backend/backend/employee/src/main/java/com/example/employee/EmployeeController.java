@@ -26,7 +26,7 @@ public class EmployeeController {
 
 	@GetMapping("/getById/{id}")
 	public Employee getEmployeeById(@PathVariable int id) {
-		return employeeService.getEmployeeById(id);	 
+		return employeeService.getEmployeeById(id);
 	}
 	
 	@GetMapping(path= "/getAll")
@@ -40,7 +40,6 @@ public class EmployeeController {
 	
 	@DeleteMapping(path="/delete/{id}")
 	public String deleteEmlpoyee(@PathVariable int id) {
-		System.out.println("DeleteEmployee");
 		return employeeService.delete(id);
 	}
 	
