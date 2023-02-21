@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.description-heading {
+  font-weight: bold;
+  font-size: 1.2rem;
+}

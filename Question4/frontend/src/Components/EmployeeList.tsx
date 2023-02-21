@@ -52,15 +52,18 @@ const EmployeeList = () => {
           <Button icon={<UserAddOutlined />}>Create New</Button>
         </Link>
       </div>
-
-      <MyList
-        items={employee}
-        keyExtractor={(item) => item.id}
-        containerProps={{ style: { margin: '10px' } }}
-        render={(item) => (
-          <EmployeeItem employee={item} deleteEmployee={deleteEmployee} />
-        )}
-      />
+      {employee ? (
+        <MyList
+          items={employee}
+          keyExtractor={(item) => item.id}
+          containerProps={{ style: { margin: '10px' } }}
+          render={(item) => (
+            <EmployeeItem employee={item} deleteEmployee={deleteEmployee} />
+          )}
+        />
+      ) : (
+        <>loading</>
+      )}
     </Home>
   )
 }
