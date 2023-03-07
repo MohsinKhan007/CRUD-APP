@@ -1,6 +1,5 @@
-# TVM Technical Test
+# Software Testing Project
 
-This repo is created and developed in giving the technical test Of TVM job Application Software Engineer
 
 ### Technologies Used:
 
@@ -33,24 +32,13 @@ This repo is created and developed in giving the technical test Of TVM job Appli
 
 ### Project Structure
 
-The repo contains 4 folders
+The repo contains 1 folder
 
-- Question 1
-- Question 2
-- Question 3
+
 - Question 4
 
-Each Folder contains folder solution of each question
 
-### Folder structure of Question1, Question2, Question3
 
-Folder/src/MainClass.java
-
-#### Pre-Reqs:
-
-Java JDK installed in the system
-Check by opening the CLI and enter java -v
-use a Java IDE or run by terminal
 
 ### Question4:
 
