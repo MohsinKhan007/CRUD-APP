@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import { UserAddOutlined } from '@ant-design/icons/lib/icons'
 import Alert from '../utils/Alert'
 
+// Adding comments for checking the CI actions
+
 // Employee List is the Component renders all the start. It fetches all the Employee Data and displays it
 // as a List
 const EmployeeList = () => {
