@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-      - name: Run Insall
+      - name: install dependencies and run project tests
         working-directory: ./software-testing-project/frontend
         run: npm install && npm run test
