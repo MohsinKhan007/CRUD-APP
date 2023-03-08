@@ -223,7 +223,9 @@ const EmployeeForm = () => {
       <div>
         <BackButton />
         <div className="p-0-80">
-          <div className="text-c">{getTitle()}</div>
+          <div data-testid="Form-Title" className="text-c">
+            {getTitle()}
+          </div>
           <div className="flex flex-d-col align-c ">{displayData}</div>
         </div>
       </div>

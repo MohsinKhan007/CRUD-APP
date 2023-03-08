@@ -6,7 +6,9 @@ function PageNotFound() {
     <Home>
       <BackButton />
       <div className="flex just-center ">
-        <h1 className="text-teal text-xl ">404 Page Not Found</h1>
+        <h1 data-testid="PageNotFound" className="text-teal text-xl ">
+          404 Page Not Found
+        </h1>
       </div>
     </Home>
   )

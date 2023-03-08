@@ -9,6 +9,7 @@ const BackButton = () => {
       size="large"
       type="ghost"
       className="br-20"
+      data-testid="backButton"
       icon={<ArrowLeftOutlined />}
       onClick={() => navigate(-1)}
     ></Button>

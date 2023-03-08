@@ -62,7 +62,7 @@ const EmployeeList = () => {
     <Home>
       {contextHolder}
       <div className="flex m-10-20-0-0 just-end">
-        <Link to={'/create'}>
+        <Link to={'/create'} data-testid="createForm-page">
           <Button icon={<UserAddOutlined />}>Create New</Button>
         </Link>
       </div>
