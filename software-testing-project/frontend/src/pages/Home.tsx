@@ -9,7 +9,7 @@ type HomeProps = {
 
 const Home = (props: HomeProps) => {
   return (
-    <Layout className="bg-grey bd-box scroll view-w-100 view-h-100">
+    <Layout className="bg-grey bd-box scroll view-w-100 view-h-100 text-c">
       <Header className="fontWeight bg-teal text-c text-l">
         Employee CRUD Application
       </Header>
