@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-      - name: install dependencies and run project tests
+      - name: install dependencies and run project tests and build docker image
         working-directory: ./software-testing-project/frontend
-        run: npm install && npm run test:ci && docker build -t mohsinwaseem65/CRUD-frontend
+        run: npm install && npm run test:ci && docker build -t mohsinwaseem65/crud-frontend
       - name: Docker login
         working-directory: ./software-testing-project/frontend
         run: docker login -u mohsinwaseem65 -p Mrvsk12678@wa
       - name: Docker build image and push to docker hub
-        run: docker push mohsinwaseem65/CRUD-frontend
+        run: docker push mohsinwaseem65/crud-frontend
