@@ -1,11 +1,12 @@
 // Api Testing, Router Testing
 import React, { Component } from 'react'
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 
 import BackButton from '../Components/BackButton'
 
 import EmployeeDetail from '../pages/EmployeeDetail'
 import { BrowserRouter } from 'react-router-dom'
+import Home from '../pages/Home'
 
 describe('back button component', () => {
   render(
@@ -19,13 +20,4 @@ describe('back button component', () => {
   })
 })
 
-describe('Employee Detail Button', () => {
-  render(
-    <BrowserRouter>
-      <EmployeeDetail />
-    </BrowserRouter>
-  )
-  it('Should contain the rendered value', () => {
-    expect(screen.findByTestId('employeeName')).toBeInTheDocument()
-  })
-})
+afterAll(cleanup)

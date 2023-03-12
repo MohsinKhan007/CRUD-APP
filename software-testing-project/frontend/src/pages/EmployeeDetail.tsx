@@ -40,7 +40,11 @@ function EmployeeDetail() {
         <BackNavigation />
       </div>
       <div className="p-20">
-        <h1 style={lableStyling} className="text-c text-h1">
+        <h1
+          style={lableStyling}
+          data-testid="employeeName"
+          className="text-c text-h1"
+        >
           {employee.name}
         </h1>
         <Descriptions
@@ -61,7 +65,11 @@ function EmployeeDetail() {
           >
             {employee.phone}
           </Descriptions.Item>
-          <Descriptions.Item labelStyle={lableStyling} label="Email">
+          <Descriptions.Item
+            data-testid="employeeEmail"
+            labelStyle={lableStyling}
+            label="Email"
+          >
             {employee.email}
           </Descriptions.Item>
           <Descriptions.Item labelStyle={lableStyling} label="Department">
