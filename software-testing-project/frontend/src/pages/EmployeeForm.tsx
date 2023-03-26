@@ -29,6 +29,7 @@ const EmployeeForm = () => {
     const title = isAdd ? employeeCreatePage : employeeUpdatePage
     return <h1 className="text-l text-c">{title}</h1>
   }
+  // TDD and integration tests are completed, Now adding the file in the repo and applying CI pipeline jobs
 
   // getButtonText getting the button text of submit button Create or Update by checking the IsAdd variable
   const getButtonText = () => {
