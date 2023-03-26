@@ -13,34 +13,49 @@ import Alert from '../utils/Alert'
 
 // Employee List is the Component renders all the start. It fetches all the Employee Data and displays it
 // as a List
-const EmployeeList = () => {
+
+type TestProps = {
+  initialTestValue?: Array<IEmployee>
+}
+const EmployeeList = ({ initialTestValue }: TestProps) => {
   const [messageApi, contextHolder] = message.useMessage()
   const [employee, setEmployee] =
     useState<Array<IEmployee>>(initialValueArray)
 
   // UseEffect is Called at the start when Component is  mounted
-  useEffect(() => {
-    EmployeeService.getAll()
-      .then((res) => {
-        setEmployee(res.data)
-      })
-      .catch((e: Error) => {
-        console.log(e)
-        Alert({
-          type: 'error',
-          content: e.message,
-          messageApi: messageApi,
+
+  const getEmployeeData = () => {
+    if (!initialTestValue) {
+      EmployeeService.getAll()
+        .then((res) => {
+          setEmployee(res.data)
         })
-        throw new Error(e.message)
-      })
+        .catch((e: Error) => {
+          console.log(e)
+          Alert({
+            type: 'error',
+            content: e.message,
+            messageApi: messageApi,
+          })
+          throw new Error(e.message)
+        })
+    } else {
+      setEmployee(initialTestValue)
+    }
+  }
+
+  useEffect(() => {
+    getEmployeeData()
   }, [])
 
   // Delete the employee by id Called in the EmployeeItem Component and passed as prop
   const deleteEmployee = (id: number) => {
     try {
       EmployeeService.deleteEmployee(id)
-        .then((res) => {
-          let filtered = employee.filter((emp) => emp.id !== id)
+        .then((res: { data: any }) => {
+          let filtered = employee.filter(
+            (emp: { id: number }) => emp.id !== id
+          )
           Alert({
             type: 'success',
             content: res.data,
@@ -48,7 +63,7 @@ const EmployeeList = () => {
           })
           setEmployee(filtered)
         })
-        .catch((err) => {
+        .catch((err: { data: any }) => {
           Alert({
             type: 'error',
             content: err.data,

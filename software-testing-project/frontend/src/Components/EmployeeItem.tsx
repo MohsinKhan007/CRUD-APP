@@ -21,8 +21,18 @@ const EmployeeItem = ({ employee, deleteEmployee }: EmployeeItemProps) => {
     <Card className="m-10">
       <div className="flex just-btw">
         <Tooltip placement="bottomLeft" title="Click to see details">
-          <Link className="w-80" to={`/employee/${id}`}>
-            <p className="text-title text-a-l"> {name} </p>
+          <Link
+            data-testid="EmployeeDetailLink"
+            className="w-80"
+            to={`/employee/${id}`}
+          >
+            <p
+              data-testid="employeeDetailp"
+              className="text-title text-a-l"
+            >
+              {' '}
+              {name}{' '}
+            </p>
           </Link>
         </Tooltip>
         <div className="w-18 flex just-btw align-center">

@@ -18,7 +18,11 @@ const antIcon = (
 const CustomSpinner = () => (
   <Home>
     {' '}
-    <Spin className="text-c" indicator={antIcon} />
+    <Spin
+      data-testid="loadingStateId"
+      className="text-c"
+      indicator={antIcon}
+    />
   </Home>
 )
 

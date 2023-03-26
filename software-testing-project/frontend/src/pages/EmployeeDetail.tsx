@@ -7,9 +7,15 @@ import IEmployee from '../Interfaces/Employee'
 import useLoaderHook from '../utils/UseLoaderHook'
 import { initialValue } from '../Interfaces/Employee'
 import Spinner from '../utils/Spinner'
-import { ArrowLeftOutlined } from '@ant-design/icons/lib/icons'
+
 import BackNavigation from '../Components/BackButton'
-function EmployeeDetail() {
+import { mockEmployeeArray } from '../mocks/mockEmployee'
+
+type EmployeeDetailTestProps = {
+  isTestingRendered?: boolean
+}
+
+function EmployeeDetail({ isTestingRendered }: EmployeeDetailTestProps) {
   const [employee, setEmployee] = useState<IEmployee>(initialValue)
 
   const { loading, setLoading } = useLoaderHook(true)
@@ -21,20 +27,50 @@ function EmployeeDetail() {
   }
   const id = useParams().id!
 
-  useEffect(() => {
-    EmployeeService.getEmployeeById(parseInt(id))
-      .then((resp) => {
-        setEmployee(resp.data)
+  console.log('EmployeeDetailsPage')
+
+  const fetchEmployeeDetails = async () => {
+    if (!isTestingRendered) {
+      EmployeeService.getEmployeeById(parseInt(id))
+        .then((resp) => {
+          setEmployee(resp.data)
+        })
+        .catch((err: Error) => {
+          throw new Error(err.message)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    } else {
+      const employeeDetail = mockEmployeeArray.find((emp) => {
+        if (emp.id === parseInt(id)) {
+          return emp
+        }
       })
-      .catch((err: Error) => {
-        throw new Error(err.message)
-      })
-      .finally(() => {
+      console.log(employeeDetail)
+      if (employeeDetail) {
+        setEmployee(employeeDetail)
         setLoading(false)
-      })
+        console.log('Changed')
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchEmployeeDetails()
+
+    console.log('useEffect ', employee)
   }, [id])
 
-  const Data: JSX.Element = !loading ? (
+  if (loading) {
+    return (
+      <div data-testid="EmployeeDetailSpinner">
+        <Spinner />
+      </div>
+    )
+  }
+
+  const Data: JSX.Element = (
     <Home>
       <div>
         <BackNavigation />
@@ -65,12 +101,18 @@ function EmployeeDetail() {
           >
             {employee.phone}
           </Descriptions.Item>
-          <Descriptions.Item
-            data-testid="employeeEmail"
-            labelStyle={lableStyling}
-            label="Email"
-          >
-            {employee.email}
+          <Descriptions.Item labelStyle={lableStyling} label="Email">
+            <p
+              data-testid="employeeEmail"
+              style={{
+                display: 'block',
+                margin: '0px',
+                padding: '0px',
+                border: '0px',
+              }}
+            >
+              {employee.email}
+            </p>
           </Descriptions.Item>
           <Descriptions.Item labelStyle={lableStyling} label="Department">
             {employee.dept}
@@ -78,8 +120,6 @@ function EmployeeDetail() {
         </Descriptions>
       </div>
     </Home>
-  ) : (
-    <Spinner />
   )
 
   return Data
