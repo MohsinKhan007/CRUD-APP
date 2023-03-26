@@ -1,0 +1,6 @@
+export const footerTitle = 'Software Testing Project'
+export const headerTitle = 'Employee CRUD Application'
+export const employeeCreatePage = 'Create Employee'
+export const employeeUpdatePage = 'Update Employee'
+export const employeeCreateBtn = 'Create'
+export const employeeUpdateBtn = 'Update'

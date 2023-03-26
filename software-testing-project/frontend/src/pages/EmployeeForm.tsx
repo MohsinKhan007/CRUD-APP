@@ -7,6 +7,12 @@ import { Button, Form, Input, message } from 'antd'
 import useLoaderHook from '../utils/UseLoaderHook'
 import BackButton from '../Components/BackButton'
 import Alert from '../utils/Alert'
+import {
+  employeeCreateBtn,
+  employeeCreatePage,
+  employeeUpdateBtn,
+  employeeUpdatePage,
+} from '../consts'
 
 const EmployeeForm = () => {
   const paramId = +useParams().id!
@@ -20,22 +26,15 @@ const EmployeeForm = () => {
 
   // getTitle getting the title of the form Create or Update by checking the IsAdd variable
   const getTitle = () => {
-    const title = isAdd ? 'Create Employee' : 'Update Employee'
+    const title = isAdd ? employeeCreatePage : employeeUpdatePage
     return <h1 className="text-l text-c">{title}</h1>
   }
 
   // getButtonText getting the button text of submit button Create or Update by checking the IsAdd variable
   const getButtonText = () => {
-    const buttonText = isAdd ? 'Create' : 'Update'
+    const buttonText = isAdd ? employeeCreateBtn : employeeUpdateBtn
     return buttonText
   }
-
-  // useEffect to Call the Api when Component is created
-  useEffect(() => {
-    !isAdd && getEmployeeData(paramId)
-  }, [isAdd, paramId])
-
-  // Call the api and getting the Employee Data if it is an Edit Form
   const getEmployeeData = async (paramId: number) => {
     await EmployeeService.getEmployeeById(paramId)
       .then((res) => {
@@ -46,6 +45,14 @@ const EmployeeForm = () => {
       })
       .finally(() => setLoading(false))
   }
+
+  // useEffect to Call the Api when Component is created
+  useEffect(() => {
+    !isAdd && getEmployeeData(paramId)
+  }, [isAdd, paramId])
+
+  // Call the api and getting the Employee Data if it is an Edit Form
+
   // Calling when submitting the form
   const handleSubmit = () => {
     try {

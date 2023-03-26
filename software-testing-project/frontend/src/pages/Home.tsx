@@ -1,5 +1,8 @@
 import React from 'react'
 import { Layout } from 'antd'
+import { footerTitle, headerTitle } from '../consts'
+
+import { Footer } from 'antd/es/layout/layout'
 
 const { Header } = Layout
 
@@ -14,9 +17,25 @@ const Home = (props: HomeProps) => {
         className="fontWeight bg-teal text-c text-l"
         data-testid="Home"
       >
-        Employee CRUD Application
+        {headerTitle}
       </Header>
       {props.children}
+
+      <Footer
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          width: '100%',
+          backgroundColor: 'rgb(0,128,128)',
+          color: 'black',
+          textAlign: 'center',
+          fontWeight: '700',
+          fontSize: '24px',
+        }}
+        data-testid="AppFooter"
+      >
+        {footerTitle}
+      </Footer>
     </Layout>
   )
 }

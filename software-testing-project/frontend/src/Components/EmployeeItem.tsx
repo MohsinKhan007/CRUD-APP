@@ -30,8 +30,7 @@ const EmployeeItem = ({ employee, deleteEmployee }: EmployeeItemProps) => {
               data-testid="employeeDetailp"
               className="text-title text-a-l"
             >
-              {' '}
-              {name}{' '}
+              {name}
             </p>
           </Link>
         </Tooltip>
