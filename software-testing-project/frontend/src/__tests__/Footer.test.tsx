@@ -55,3 +55,10 @@ test('testing the UI of the Footer Div', () => {
   const styles = window.getComputedStyle(AppFooter)
   expect(styles.backgroundColor).toBe('rgb(0, 128, 128)')
 })
+test('footer input should be the same',()=>{
+
+  const {getByTestId}=render(initials(routes.homeRoute));
+  const AppFooter=getByTestId('AppFooter')
+  expect(AppFooter).toHaveTextContent('Software Testing Project software testing project all right reserved');
+
+})

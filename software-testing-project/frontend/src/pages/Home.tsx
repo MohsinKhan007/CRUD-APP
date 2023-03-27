@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd'
-import { footerTitle, headerTitle } from '../consts'
+import { FooterCopyRight, footerTitle, headerTitle } from '../consts'
 
 import { Footer } from 'antd/es/layout/layout'
 
@@ -8,6 +8,7 @@ const { Header } = Layout
 
 type HomeProps = {
   children?: React.ReactNode
+
 }
 
 const Home = (props: HomeProps) => {
@@ -34,7 +35,7 @@ const Home = (props: HomeProps) => {
         }}
         data-testid="AppFooter"
       >
-        {footerTitle}
+        {footerTitle} <p style={{display:'flex',fontSize:'13px',textAlign:'center'}}>{FooterCopyRight} </p>
       </Footer>
     </Layout>
   )
