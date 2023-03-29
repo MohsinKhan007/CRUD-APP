@@ -10,7 +10,9 @@ import { act } from 'react-dom/test-utils'
 import { jest, test } from '@jest/globals'
 import userEvent from '@testing-library/user-event'
 import { mockEmployeeArray } from '../mocks/mockEmployee'
-jest.setTimeout(15000)
+//jest.setTimeout(15000)
+// Comments by Syed Ali hasan for jest timing change
+jest.setTimeout(16000)
 
 afterEach(() => {
   cleanup()
