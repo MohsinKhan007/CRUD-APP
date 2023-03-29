@@ -96,7 +96,7 @@ const EmployeeList = ({ initialTestValue }: TestProps) => {
       ) : (
         <div className="flex text-c align-center just-center">
           <Card className="fontWeight w-50 text-md ">
-            No Employee Data is Present. Add Employees from create New
+            No Employee Data is Present. Add Employees from create New Data
           </Card>
         </div>
       )}
